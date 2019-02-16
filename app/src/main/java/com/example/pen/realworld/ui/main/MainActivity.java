@@ -1,17 +1,22 @@
 package com.example.pen.realworld.ui.main;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.pen.realworld.R;
 import com.example.pen.realworld.databinding.ActivityMainBinding;
 import com.example.pen.realworld.model.Article;
+import com.example.pen.realworld.ui.newarticle.NewArticleActivity;
 
 import java.util.List;
 
@@ -28,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
         binding.setViewModel(viewModel);
         //To make it work, we also need to tell binding class who’s the LifecycleOwner.
         binding.setLifecycleOwner(this);
+
+        viewModel.navigateToNewArticle.observe(this, new Observer<Object>() {
+            @Override
+            public void onChanged(@Nullable Object o) {
+                Intent intent = new Intent(getApplicationContext(), NewArticleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     //livedata 에서 데이터가 바뀌면 자동으로 호출되는 함수
@@ -51,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         layoutManager.setRecycleChildrenOnDetach(true); // 자식들도 다 디태치됨
         view.setLayoutManager(layoutManager);
+
+        if(articles == null) {
+            Log.d("test", "articles is null");
+            return;
+        }
         adapter.setList(articles);
     }
 }

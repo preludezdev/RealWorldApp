@@ -27,7 +27,7 @@ public class PreferenceHelper {
         pref = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    User currentUser;
+    private User currentUser;
     Gson gson = new Gson();
 
     public void setCurrentUser(User user){
@@ -40,6 +40,10 @@ public class PreferenceHelper {
 
     public void loadCurrentUser(){
         currentUser = gson.fromJson(this.pref.getString("currentUser",""),User.class);
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
     }
 
 }

@@ -31,7 +31,12 @@ public class MainViewModel extends ViewModel{
     public MediatorLiveData<Integer> fetchingProgressbarVisibility;
     public MediatorLiveData<Integer> fetchingRecyclerViewVisibility;
 
+    //액티비티 이동을 위한 수단
+    public MutableLiveData<Object> navigateToNewArticle;
+
     public MainViewModel() {
+        navigateToNewArticle = new MutableLiveData<>();
+
         isFetching = new MutableLiveData<>();
         isFetching.setValue(false);
 
@@ -76,4 +81,9 @@ public class MainViewModel extends ViewModel{
                     }
                 });
     }
+
+    public void createArticle(){
+        navigateToNewArticle.setValue(new Object());// NewArticleActivity로 이동.
+    }
+
 }

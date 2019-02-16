@@ -45,7 +45,7 @@ public class LoginViewModel extends ViewModel {
         NetworkHelper.getInstance()
                 .authService
                 .login(new AuthService.LoginRequest(
-                        new AuthService.LoginInfo(email.getValue(),password.getValue())))
+                        new AuthService.LoginInfo(email.getValue().trim(),password.getValue().trim())))
                 .enqueue(new Callback<AuthService.UserResult>() {
                     @Override
                     public void onResponse(Call<AuthService.UserResult> call, Response<AuthService.UserResult> response) {

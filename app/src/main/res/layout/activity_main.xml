@@ -45,14 +45,25 @@
 
         <Button
             android:id="@+id/refresh"
-            android:text="refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:onClick="@{()-> viewModel.fetch()}"
-            />
+            android:text="refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/btNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Write Post"
+            android:onClick="@{()-> viewModel.createArticle()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/refresh" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -1,4 +1,4 @@
-package com.example.pen.realworld.ui.login;
+package com.example.pen.realworld.ui.register;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -10,36 +10,28 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.pen.realworld.R;
-import com.example.pen.realworld.databinding.ActivityLoginBinding;
+import com.example.pen.realworld.databinding.ActivityRegisterBinding;
 import com.example.pen.realworld.ui.main.MainActivity;
-import com.example.pen.realworld.ui.register.RegisterActivity;
 
-public class LoginActivity extends AppCompatActivity {
 
-    ActivityLoginBinding binding;
+public class RegisterActivity extends AppCompatActivity {
+
+    ActivityRegisterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
 
-        LoginViewModel viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+
+        RegisterViewModel viewModel = ViewModelProviders.of(this).get(RegisterViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
         viewModel.navigateToMain.observe(this, new Observer<Object>() {
             @Override
             public void onChanged(@Nullable Object o) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        viewModel.navigateToRegister.observe(this, new Observer<Object>() {
-            @Override
-            public void onChanged(@Nullable Object o) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         viewModel.errorMsg.observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String msg) {
-                Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
