@@ -1,4 +1,4 @@
-package com.example.pen.realworld.ui;
+package com.example.pen.realworld.ui.detail;
 
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;

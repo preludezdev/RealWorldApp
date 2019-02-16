@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.pen.realworld.R;
-import com.example.pen.realworld.ui.MainActivity;
-import com.example.pen.realworld.ui.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.pen.realworld.ui;
+package com.example.pen.realworld.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.pen.realworld.databinding.ItemArticleBinding;
 import com.example.pen.realworld.model.Article;
+import com.example.pen.realworld.ui.detail.DetailArticleActivity;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -88,7 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             binding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(),DetailArticleActivity.class);
+                    Intent intent = new Intent(view.getContext(), DetailArticleActivity.class);
                     intent.putExtra("slug",list.get(getAdapterPosition()).getSlug());
                     view.getContext().startActivity(intent);
                 }

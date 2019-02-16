@@ -20,11 +20,14 @@ public class RegisterViewModel extends ViewModel {
     public MutableLiveData<String> email = new MutableLiveData<>();
     public MutableLiveData<String> password = new MutableLiveData<>();
 
-    //Intent로 액티비티 넘기기 위한 조치
+    //Intent로 액티비티 넘기기 전용
     public MutableLiveData<Object> navigateToMain = new MutableLiveData<>();
 
     //뮤터블은 읽기 쓰기 전용
     public MutableLiveData<Boolean> isFetching; // 프로그레스바
+
+    //에러메시지 띄우기 전용
+    public MutableLiveData<String> errorMsg = new MutableLiveData<>();
 
     public RegisterViewModel() {
         isFetching = new MutableLiveData<>();
@@ -46,7 +49,7 @@ public class RegisterViewModel extends ViewModel {
                         if(!response.isSuccessful()){ //200번대인지 체크
                             Log.d("test","http code : " + response.code());
                             try {
-                                Log.d("test", response.errorBody().string());
+                                errorMsg.setValue(response.errorBody().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -56,15 +59,13 @@ public class RegisterViewModel extends ViewModel {
                         PreferenceHelper.getInstance().setCurrentUser(response.body().getUser());
                         PreferenceHelper.getInstance().saveCurrentUser();
                         navigateToMain.setValue(new Object());
-
                     }
 
                     @Override
                     public void onFailure(Call<AuthService.UserResult> call, Throwable t) {
                         t.printStackTrace();
+                        errorMsg.setValue("onFailure 발생");
                     }
-
-
                 });
     }
 }

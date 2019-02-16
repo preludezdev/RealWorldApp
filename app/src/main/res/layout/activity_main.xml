@@ -8,14 +8,14 @@
         <import type = "android.view.View"/>
         <variable
             name="viewModel"
-            type="com.example.pen.realworld.ui.MainViewModel">
+            type="com.example.pen.realworld.ui.main.MainViewModel">
         </variable>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <ProgressBar
             android:id="@+id/progressBar"

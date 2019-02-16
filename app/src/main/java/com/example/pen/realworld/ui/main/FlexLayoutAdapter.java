@@ -1,4 +1,4 @@
-package com.example.pen.realworld.ui;
+package com.example.pen.realworld.ui.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -39,7 +39,7 @@ public class FlexLayoutAdapter extends RecyclerView.Adapter<FlexLayoutAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String currTag = list.get(position);
 
-        holder.tvHashTag.setText("#"+currTag);
+        holder.tvHashTag.setText("#"+currTag +" ");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.pen.realworld.ui;
+package com.example.pen.realworld.ui.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
