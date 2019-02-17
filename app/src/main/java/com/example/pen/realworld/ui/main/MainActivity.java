@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.pen.realworld.R;
 import com.example.pen.realworld.databinding.ActivityMainBinding;
@@ -41,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     //livedata 에서 데이터가 바뀌면 자동으로 호출되는 함수
@@ -67,10 +64,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setRecycleChildrenOnDetach(true); // 자식들도 다 디태치됨
         view.setLayoutManager(layoutManager);
 
-        if(articles == null) {
-            Log.d("test", "articles is null");
-            return;
-        }
-        adapter.setList(articles);
+        if(articles != null)
+          adapter.setDataList(articles);
     }
 }

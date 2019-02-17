@@ -24,7 +24,7 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<RecyclerViewModel> list = new ArrayList<>();
+    private List<RecyclerViewModel> dataList = new ArrayList<>();
     RecyclerView.RecycledViewPool pool;
 
     public static final int VIEW_TYPE_DATE = 1;
@@ -34,8 +34,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.pool = new RecyclerView.RecycledViewPool();
     }
 
-    public void setList(List<Article> newArticleList) {
+    public void setDataList(List<Article> newArticleList) {
         if (newArticleList.size() == 0) return;
+
+        dataList.clear();
 
         Date prevDate = new Date(1990,12,8);
         int prevYear = prevDate.getYear();
@@ -49,10 +51,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             if (prevYear == currDate.getYear() && prevMonth == currDate.getMonth()
                     && prevDay == currDate.getDay() && prevHours == currDate.getHours()) {
-                list.add(new RecyclerViewModel(VIEW_TYPE_ARTICLE, currArticle));
+                dataList.add(new RecyclerViewModel(VIEW_TYPE_ARTICLE, currArticle));
             } else { // 날짜가 달라진 경우
-                list.add(new RecyclerViewModel(VIEW_TYPE_DATE, new DateVo(currDate))); //날짜 뷰모델 삽입.=
-                list.add(new RecyclerViewModel(VIEW_TYPE_ARTICLE, currArticle));
+                dataList.add(new RecyclerViewModel(VIEW_TYPE_DATE, new DateVo(currDate))); //날짜 뷰모델 삽입.=
+                dataList.add(new RecyclerViewModel(VIEW_TYPE_ARTICLE, currArticle));
 
                 prevYear = currDate.getYear();
                 prevMonth = currDate.getMonth();
@@ -84,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        RecyclerViewModel model = list.get(position);
+        RecyclerViewModel model = dataList.get(position);
 
         if(model.getViewType() == VIEW_TYPE_DATE){
             DateViewHolder currHolder = ((DateViewHolder)holder);
@@ -112,12 +114,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return dataList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return list.get(position).getViewType();
+        return dataList.get(position).getViewType();
     }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {
@@ -137,7 +139,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), DetailArticleActivity.class);
-                    intent.putExtra("slug", list.get(getAdapterPosition()).getSlug());
+                    intent.putExtra("slug", dataList.get(getAdapterPosition()).getSlug());
                     view.getContext().startActivity(intent);
                 }
             });

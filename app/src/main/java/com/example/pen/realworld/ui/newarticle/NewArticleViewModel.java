@@ -49,7 +49,7 @@ public class NewArticleViewModel extends ViewModel {
 
         NetworkHelper.getInstance()
                 .articleService
-                .createArticle(currentUser.getToken(),
+                .createArticle("Token " + currentUser.getToken(),
                         new ArticleService.CreateArticleRequest(createArticleInfo))
                 .enqueue(new Callback<ArticleService.ArticleResult>() {
                     @Override
